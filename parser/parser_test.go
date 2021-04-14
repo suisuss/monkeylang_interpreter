@@ -2,8 +2,8 @@ package parser
 
 import (
 	"testing"
-	"monkey/ast"
-	"monkey/lexer"
+	"github.com/suisuss/monkey-interpreter/ast"
+	"github.com/suisuss/monkey-interpreter/lexer"
 )
 
 func TestLetStatements(t *testing.T) {
@@ -12,8 +12,8 @@ func TestLetStatements(t *testing.T) {
 	let y = 10;
 	let foobar = 838383;
 	`
-	l := lexer.New(input)
-	p := New(l)
+	l := lexer.NewLexer(input)
+	p := NewParser(l)
 	program := p.ParseProgram()
 	if program == nil {
 		t.Fatalf("ParseProgram() returned nil")
@@ -27,7 +27,6 @@ func TestLetStatements(t *testing.T) {
 		}{
 			{"x"},
 			{"y"},
-			38
 			{"foobar"},
 	}
 	for i, tt := range tests {
